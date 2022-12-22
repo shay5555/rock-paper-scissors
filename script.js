@@ -1,6 +1,7 @@
 function getComputerChoice () {
     let computerChoice;
     computerChoice = Math.floor(Math.random() * 3 + 1);
+
     switch(computerChoice) {
         case 1:
             return ('rock');
@@ -13,8 +14,9 @@ function getComputerChoice () {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
+
     if (playerSelection === computerSelection) {
-        console.log(`Tie game! You both picked ${computerSelection}`);
+            return (`Tie game! You both picked ${computerSelection}`);
     } else if (playerSelection === 'rock') {
         if (computerSelection === 'paper') {
             return ('You lost! paper beats rock');
@@ -38,6 +40,12 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function game () {
+    for (let i=0; i<5; i++) {
+        const playerSelection = prompt("Write you choice; rock, paper or scissors: ", 'rock');
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+    }
+}
+
+game();
