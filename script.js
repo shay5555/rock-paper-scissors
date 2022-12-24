@@ -1,11 +1,13 @@
-const rock = document.querySelector('.rock');
-const paper = document.querySelector('.paper');
-const scissors = document.querySelector('.scissors');
+const rock         = document.querySelector('.rock');
+const paper        = document.querySelector('.paper');
+const scissors     = document.querySelector('.scissors');
 const currentScore = document.querySelector('.current-score');
-const roundResult = document.querySelector(".round-result");
+const roundResult  = document.querySelector('.round-result');
+const gameCount    = document.querySelector('.game-count');
 
 let currentPlayerScore   = 0;
 let currentComputerScore = 0;
+let currentGameCount     = 1;
 
 rock.addEventListener('click', () => {
     playRound("rock", getComputerChoice());
@@ -47,18 +49,38 @@ function playRound(playerSelection, computerSelection) {
     } else if (playerSelection === 'paper') {
         if (computerSelection === 'scissors') {
             currentComputerScore++;
+            roundResult.textContent = "You lost! Scissors beats paper!";
         } else if (computerSelection === 'rock') {
             currentPlayerScore++;
+            roundResult.textContent = "You won! Paper beats rock!";
         }
     } else if (playerSelection === 'scissors') {
         if (computerSelection === 'rock') {
             currentComputerScore++;
+            roundResult.textContent = "You lost! Rock beats scissors!";
         } else if (computerSelection === 'paper') {
             currentPlayerScore++;
+            roundResult.textContent = "You won! scissors beats paper!";
         }
     }
 
     currentScore.textContent = (`${currentPlayerScore} - ${currentComputerScore}`);
+    
+    if (currentComputerScore === 5) {
+        alert(`You lost the game! The score was ${currentPlayerScore} to ${currentComputerScore}`);
+        currentComputerScore = 0;
+        currentPlayerScore   = 0;
+        gameCount.textContent = `Current game: ${currentGameCount++}`;
+        currentScore.textContent = '0 - 0';
+        roundResult.textContent = '';
+    } else if(currentPlayerScore === 5) {
+        alert(`You won the game! The score was ${currentPlayerScore} to ${currentComputerScore}`);
+        currentComputerScore = 0;
+        currentPlayerScore   = 0;
+        gameCount.textContent = `Current game: ${currentGameCount++}`;
+        currentScore.textContent = '0 - 0';
+        roundResult.textContent = '';
+    }
 }
 
 //play the game with prompt 
