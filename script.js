@@ -1,3 +1,17 @@
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissors = document.querySelector('.scissors');
+
+rock.addEventListener('click', () => {
+    console.log(playRound("rock", getComputerChoice()));
+})
+paper.addEventListener('click', () => {
+    console.log(playRound("paper", getComputerChoice()));
+})
+scissors.addEventListener('click', () => {
+    console.log(playRound("scissors", getComputerChoice()));
+})
+
 function getComputerChoice () {
     let computerChoice;
     computerChoice = Math.floor(Math.random() * 3 + 1);
@@ -40,12 +54,12 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game () {
+//play the game with prompt 
+/* function game () {
     for (let i=0; i<5; i++) {
         const playerSelection = prompt("Write you choice; rock, paper or scissors: ", 'rock');
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
     }
 }
-
-game();
+ */ 
