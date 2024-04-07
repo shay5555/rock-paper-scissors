@@ -26,3 +26,37 @@ function playRound(playerSelection, computerSelection) {
         return 'loss';
     }
 }
+
+function playGame() {
+    let playerScore   = 0;
+    let computerScore = 0;
+
+    for (i = 0; i < 5; i++) {
+        let playerSelection;
+        do {
+            playerSelection = prompt('Pick rock, paper or scissors.');
+        }   while ((playerSelection !== 'rock') && 
+                   (playerSelection !== 'paper') && 
+                   (playerSelection !== 'scissors'));
+
+        let computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection);
+
+        if (result === 'win') {
+            playerScore++;
+        } else if (result === 'loss') {
+            computerScore++;
+        }
+    }
+
+    if (playerScore > computerScore) {
+        console.log(`You won by the score of ${playerScore} to ${computerScore}.`)
+    } else if (playerScore < computerScore) {
+        console.log(`The computer won by a score of ${computerScore} to ${playerScore}.`)
+    } else {
+        console.log('The game ended in a draw.')
+    }
+
+}
+
+playGame();
